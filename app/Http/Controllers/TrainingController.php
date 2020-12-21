@@ -38,16 +38,17 @@ class TrainingController extends Controller
         return redirect()->back();
     }
 
-    public function show($id){
+    //public function show($id){ //ini biasa punya
+    public function show(Training $training){ //ini model binding
         //find id on table using model
-        $training = Training::find($id);
+        //$training = Training::find($id); //ini pakai biasa punya kalau model binding x perlu letak ini
 
         //dd($training);
         //return to view
         return view('trainings.show', compact('training'));
     }
 
-    public function edit($id){
+    public function edit($id){ // ini biasa punya x sama macam model binding
         //find id on table using model
         $training = Training::find($id);
 

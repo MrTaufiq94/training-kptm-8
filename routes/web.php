@@ -23,7 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('training:list');
 Route::get('/trainings/create',[App\Http\Controllers\TrainingController::class, 'create'])->name('training:create');
 Route::post('/trainings/create',[App\Http\Controllers\TrainingController::class, 'store'])->name('training:store');
-Route::get('/trainings/{id}',[App\Http\Controllers\TrainingController::class, 'show'])->name('training:show');
+Route::get('/trainings/{training}',[App\Http\Controllers\TrainingController::class, 'show'])->name('training:show');
 Route::get('/trainings/{id}/edit',[App\Http\Controllers\TrainingController::class, 'edit'])->name('training:edit');
 Route::post('/trainings/{id}/edit',[App\Http\Controllers\TrainingController::class, 'update'])->name('training:update');
 
