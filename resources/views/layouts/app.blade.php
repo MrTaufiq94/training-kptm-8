@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a href="{{ route('training:list') }}" class="nav-link">Training List</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('training:create') }}" class="nav-link">Training Create Form</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
