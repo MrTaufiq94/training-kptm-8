@@ -17,6 +17,7 @@
                                 <th>Creator</th>
                                 <th>Created At</th>
                                 <th>Created Time</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,9 @@
                                     </td>
                                     <td>{{$training->created_at ? $training->created_at->diffForHumans() : 'No Data'}}</td>
                                     <td>{{$training->created_at ?? 'No Data'}}</td>
+                                    <td>
+                                        <a href="{{ route('training:show', $training) }}" class="btn btn-primary">View</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

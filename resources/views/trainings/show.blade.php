@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Show Training') }}</div>
+                <div class="card-header">{{ __('Show Training') }} by {{ $training->user->name}} title {{ $training->title }}</div>
 
                 <div class="card-body">
                    {{-- <form action="" method="post">
