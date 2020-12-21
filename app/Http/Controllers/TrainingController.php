@@ -47,5 +47,13 @@ class TrainingController extends Controller
         return view('trainings.show', compact('training'));
     }
 
+    public function edit($id){
+        //find id on table using model
+        $training = Training::find($id);
+
+        //return to view
+        return view('trainings.edit', compact('training'));
+    }
+
     
 }
