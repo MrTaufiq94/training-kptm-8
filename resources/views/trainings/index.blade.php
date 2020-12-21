@@ -39,7 +39,11 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        
                     </table>
+                    {{-- <div style="text-align: center;"> --}}
+                        {{ $trainings->links() }}
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
