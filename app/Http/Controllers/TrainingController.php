@@ -42,7 +42,14 @@ class TrainingController extends Controller
         $training->save();
 
         //return redirect back
-        return redirect()->back();
+        //return redirect()->back();
+        return redirect()
+            ->route('training:list')
+            ->with([
+                'alert-type' => 'alert-primary',
+                'alert' => 'Your Training has been stored!'
+            ]);
+        
     }
 
     //public function show($id){ //ini biasa punya
@@ -72,12 +79,22 @@ class TrainingController extends Controller
         //$training->update($request->all());//update semua automatik
         $training->update($request->only('title','description','trainer'));//update tertentu shaja
         //return to trainings
-        return redirect()->route('training:list');
+        return redirect()
+            ->route('training:list')
+            ->with([
+                'alert-type' => 'alert-success',
+                'alert' => 'Your Training has been updated!'
+            ]);
     }
 
     public function delete(Training $training){//ini guna model binding
         $training->delete();
-        return redirect()-> route('training:list');
+        return redirect()
+            ->route('training:list')
+            ->with([
+                'alert-type' => 'alert-danger',
+                'alert' => 'Your Training has been deleted!'
+            ]);
     }
     
 }
