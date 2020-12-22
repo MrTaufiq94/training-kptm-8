@@ -34,6 +34,16 @@ class TrainingController extends Controller
 
     public function store(Request $request)
     {
+        //ini validate guna cara inheritant dari extend controller (Controller.php)
+        //cara lain ada dalam nota
+        $this->validate(
+            $request,
+            [
+                'title' => 'required|min:3',
+                'description' => 'required|10',
+            ]
+        );
+        
         //dd($request->all());
         //Method 1 - POPO - Plain Old PHP Object
         $training = new Training();

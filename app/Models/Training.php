@@ -18,7 +18,12 @@ class Training extends Model
     //getter $training->attachment_url
     //dari getAttachmentUrlAttribute (paskal case) kepada ini attachment_url (snake case) 
     public function getAttachmentUrlAttribute(){
-        return asset('storage/'.$this->attachment);
+        //kita guna $this kerana atrribute itu belong kepada function ini
+        if($this->attachment){
+            return asset('storage/'.$this->attachment);
+        }else{
+            return 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fuser&psig=AOvVaw0tN7ArEP2a3Jtc9eotu5uQ&ust=1608696918061000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNi3mpXd4O0CFQAAAAAdAAAAABAD';
+        }
     }
         
 }
