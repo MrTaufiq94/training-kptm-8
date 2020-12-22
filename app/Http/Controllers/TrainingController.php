@@ -11,7 +11,13 @@ class TrainingController extends Controller
     public function index()
     {
         //$trainings = Training::all();
-        $trainings = Training::paginate(5);
+        //$trainings = Training::paginate(5);
+
+        //get current authenticate user
+        $user = auth()->user();
+         //get user training using  authenticate user
+        $trainings = $user->trainings()->paginate(5);
+
         //dd($training);
         return view('trainings.index',compact('trainings'));
     }
