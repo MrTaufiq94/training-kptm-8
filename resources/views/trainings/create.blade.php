@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Create Training') }}</div>
 
                 <div class="card-body">
-                   <form action="" method="post">
+                   <form action="{{ route('training:store') }}" method="post" enctype="multipart/form-data">
                        @csrf
                        <div class="form-group">
                            <label for="">Title</label>
@@ -21,6 +21,10 @@
                         <div class="form-group">
                             <label for="">Trainer</label>
                             <input type="text" name="trainer" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Attachment</label>
+                            <input type="file" name="attachment" class="form-control">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Store My Training</button>

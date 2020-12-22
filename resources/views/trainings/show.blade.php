@@ -22,6 +22,11 @@
                             <label for="">Trainer</label>
                             <input type="text" name="trainer" class="form-control" value="{{ $training->trainer }}" readonly>
                         </div>
+                        @if ($training->attachment)
+                            {{-- <a href="{{ asset('storage/'.$training->attachment) }}" target="_blank">Open Attachment</a> --}}
+                            <a href="{{ $training->attachment_url }}" target="_blank">Open Attachment</a>
+                            {{-- ini di ambil dari model training dgn method getter() --}}
+                        @endif
                    {{-- </form> --}}
                 </div>
             </div>

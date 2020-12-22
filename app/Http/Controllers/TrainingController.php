@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Training;
+use File;
+use Storage;
 
 
 class TrainingController extends Controller
@@ -40,6 +42,17 @@ class TrainingController extends Controller
         $training->trainer = $request->trainer;
         $training->user_id = auth()->user()->id;
         $training->save();
+
+        if($request->hasFile('attachment')){
+            //rename file eg: 10-2020-22.jpg
+            $filename = $training->id.'-'.date("Y-m-d").'.'.$request->attachment->getClientOriginalExtension();
+
+            //store file on storage
+            Storage::disk('public')->put($filename, File::get($request->attachment));
+
+            //update row with filename
+            $training->update(['attachment' => $filename]);
+        }
 
         //return redirect back
         //return redirect()->back();
@@ -88,6 +101,10 @@ class TrainingController extends Controller
     }
 
     public function delete(Training $training){//ini guna model binding
+        if ($training->attachment !=null) {
+            Storage::disk('public')->delete($training->attachment);
+        }
+
         $training->delete();
         return redirect()
             ->route('training:list')
