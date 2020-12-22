@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Training;
 use File;
 use Storage;
+use App\Http\Requests\StoreTrainingRequest; //ini dapat dari request yg dibuat/custom
 
 
 class TrainingController extends Controller
@@ -32,17 +33,18 @@ class TrainingController extends Controller
         return view('trainings.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreTrainingRequest $request)
     {
         //ini validate guna cara inheritant dari extend controller (Controller.php)
         //cara lain ada dalam nota
-        $this->validate(
-            $request,
-            [
-                'title' => 'required|min:3',
-                'description' => 'required|10',
-            ]
-        );
+        // $this->validate(
+        //     $request,
+        //     [
+        //         'title' => 'required|min:3',
+        //         'description' => 'required|min:10',
+        //         'attachment' => 'required|mimes:jpg,pdf,png'
+        //     ]
+        // );
         
         //dd($request->all());
         //Method 1 - POPO - Plain Old PHP Object
