@@ -8,6 +8,9 @@ use File;
 use Storage;
 use App\Http\Requests\StoreTrainingRequest; //ini dapat dari request yg dibuat/custom
 use Mail;//guna untuk send email
+use Notification;
+use App\Notifications\DeleteTrainingNotification;
+use App\Notifications\CreateTrainingNotification;
 
 
 class TrainingController extends Controller
@@ -50,6 +53,8 @@ class TrainingController extends Controller
 
     public function store(StoreTrainingRequest $request)
     {
+        $user = auth()->user();
+        Notification::send($user, new CreateTrainingNotification());
         //ini validate guna cara inheritant dari extend controller (Controller.php)
         //cara lain ada dalam nota
         // $this->validate(
@@ -145,6 +150,9 @@ class TrainingController extends Controller
     }
 
     public function delete(Training $training){//ini guna model binding
+        $user = auth()->user();
+        Notification::send($user, new DeleteTrainingNotification());
+
         if ($training->attachment !=null) {
             Storage::disk('public')->delete($training->attachment);
         }
