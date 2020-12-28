@@ -10,10 +10,20 @@
                     {{ session()->get('alert') }}
                 </div>
             @endif
-            
-            <div class="card">
-                <div class="card-header">{{ __('Training Index') }}</div>
 
+            <div class="card">
+                <div class="card-header">{{ __('Training Index') }}
+                    <div class="float-right">
+                        <form action="" method="get">
+                            <div class="input-group">
+                                <input type="text" name="keyword" class="form-control"/>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="card-body">
                     <table class="table table-hover table-responsive">
                         <thead>
@@ -49,7 +59,11 @@
                         
                     </table>
                     {{-- <div style="text-align: center;"> --}}
-                        {{ $trainings->links() }}
+                        {{ $trainings
+                            ->appends([
+                                'keyword' => request()->get('keyword')
+                            ])
+                            ->links() }}
                     {{-- </div> --}}
                 </div>
             </div>

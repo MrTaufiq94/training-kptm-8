@@ -11,15 +11,29 @@ use App\Http\Requests\StoreTrainingRequest; //ini dapat dari request yg dibuat/c
 
 class TrainingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //$trainings = Training::all();
-        //$trainings = Training::paginate(5);
+        if ($request->keyword) {
+            $search = $request->keyword;
+            // $trainings = Training::where('title','LIKE','%'.$search.'%')
+            // ->orWhere('description','LIKE','%'.$search.'%')
+            // ->paginate(5);
 
-        //get current authenticate user
-        $user = auth()->user();
-         //get user training using  authenticate user
-        $trainings = $user->trainings()->paginate(5);
+            $trainings = auth()->user()->trainings()->where('title','LIKE','%'.$search.'%')
+            ->orWhere('description','LIKE','%'.$search.'%')
+            ->orderBy('created_at','desc')
+            ->paginate(5); // sama dengan cara yang else , untuk display hanya user ini punya data
+        
+        }else{
+
+            //$trainings = Training::all();
+            //$trainings = Training::paginate(5);
+
+            //get current authenticate user
+            $user = auth()->user();
+            //get user training using  authenticate user
+            $trainings = $user->trainings()->paginate(5);
+        }
 
         //dd($training);
         return view('trainings.index',compact('trainings'));
