@@ -31,12 +31,12 @@ class TrainingController extends Controller
         }else{
 
             //$trainings = Training::all();
-            //$trainings = Training::paginate(5);
+            $trainings = Training::paginate(5);
 
             //get current authenticate user
-            $user = auth()->user();
+            //$user = auth()->user();
             //get user training using  authenticate user
-            $trainings = $user->trainings()->paginate(5);
+            //$trainings = $user->trainings()->paginate(5);
         }
 
         //dd($training);
@@ -119,6 +119,7 @@ class TrainingController extends Controller
         //find id on table using model
         //$training = Training::find($id); //ini pakai biasa punya kalau model binding x perlu letak ini
 
+        $this->authorize('view',$training);//kene buat utk authorize polisi supaya x boleh show walaupun button hilang
         //dd($training);
         //return to view
         return view('trainings.show', compact('training'));
@@ -133,6 +134,7 @@ class TrainingController extends Controller
     }
 
     public function update(Request $request, $id){
+        $this->authorize('update',$training);//kene buat utk authorize polisi supaya x boleh update walaupun button disabled/hilang
         //find id on table using model
         $training = Training::find($id);
         //update training with edited attributes
@@ -150,6 +152,7 @@ class TrainingController extends Controller
     }
 
     public function delete(Training $training){//ini guna model binding
+        $this->authorize('delete',$training);//kene buat utk authorize polisi supaya x boleh update walaupun button disabled/hilang
         $user = auth()->user();
         Notification::send($user, new DeleteTrainingNotification());
 
