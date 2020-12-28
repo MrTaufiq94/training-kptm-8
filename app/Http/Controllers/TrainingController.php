@@ -93,7 +93,10 @@ class TrainingController extends Controller
 
         //send email to user using mailable class
         //param 1:user nak dihantar, param 2: apa yg nk dihantar
-        Mail::to('m.taufiqfariduddin94@gmail.com')->send(new \App\Mail\TrainingCreated($training));
+        //function ini lama sgt nk send jadi buat job SendEmailJob
+        // Mail::to('m.taufiqfariduddin94@gmail.com')->send(new \App\Mail\TrainingCreated($training));
+
+        dispatch(new \App\Jobs\SendEmailJob($training));
 
         //return redirect back
         //return redirect()->back();
