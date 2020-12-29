@@ -138,10 +138,10 @@ class TrainingController extends Controller
         return view('trainings.edit', compact('training'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, Training $training){
         $this->authorize('update',$training);//kene buat utk authorize polisi supaya x boleh update walaupun button disabled/hilang
         //find id on table using model
-        $training = Training::find($id);
+        //$training = Training::find($id);
         //update training with edited attributes
 
         //Method 2 - Mass Assignment
