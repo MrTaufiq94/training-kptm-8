@@ -29,7 +29,8 @@ class DeleteTrainingNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        //return ['database','mail'];
+        return ['database'];
     }
 
     /**

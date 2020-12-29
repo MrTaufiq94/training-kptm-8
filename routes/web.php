@@ -27,5 +27,7 @@ Route::get('/trainings/{training}',[App\Http\Controllers\TrainingController::cla
 Route::get('/trainings/{id}/edit',[App\Http\Controllers\TrainingController::class, 'edit'])->name('training:edit');
 Route::post('/trainings/{id}/edit',[App\Http\Controllers\TrainingController::class, 'update'])->name('training:update');
 Route::get('/trainings/{training}/delete',[App\Http\Controllers\TrainingController::class, 'delete'])->name('training:delete');
+Route::get('/trainings/{training}/force-delete',[App\Http\Controllers\TrainingController::class, 'forceDelete'])->name('training:forceDelete');
+
 
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->middleware('auth');

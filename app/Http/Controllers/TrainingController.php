@@ -168,5 +168,26 @@ class TrainingController extends Controller
                 'alert' => 'Your Training has been deleted!'
             ]);
     }
+
+    public function forceDelete(Training $training){//ini guna model binding
+        $this->authorize('delete',$training);//kene buat utk authorize polisi supaya x boleh update walaupun button disabled/hilang
+        $user = auth()->user();
+        Notification::send($user, new DeleteTrainingNotification());
+
+        if ($training->attachment !=null) {
+            Storage::disk('public')->delete($training->attachment);
+        }
+
+        $training->forceDelete(); //force delete ade dalam model use Softdelete
+        return redirect()
+            ->route('training:list')
+            ->with([
+                'alert-type' => 'alert-danger',
+                'alert' => 'Your Training has been deleted!'
+            ]);
+    }
+
+
+
     
 }
