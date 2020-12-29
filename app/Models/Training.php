@@ -9,6 +9,9 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class Training extends Model implements Auditable
 {
+    //Audit Trail
+    
+
     use HasFactory;
     use SoftDeletes;
     use \OwenIt\Auditing\Auditable; //kene tambah '\' kerana x define atas
