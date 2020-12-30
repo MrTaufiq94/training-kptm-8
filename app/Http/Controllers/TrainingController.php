@@ -120,7 +120,8 @@ class TrainingController extends Controller
     }
 
     //public function show($id){ //ini biasa punya
-    public function show(Training $training){ //ini model binding
+    public function show(Training $training){ //ini model binding //by default akan cari id // kalau nak guna cara yang sama guna tp taknak cari by id guna nama field di db, di route contoh: Route::get('/trainings/{training:nama field di db}'
+    // kalau "01" dia akan baca 1 jd guna escapestring
         //find id on table using model
         //$training = Training::find($id); //ini pakai biasa punya kalau model binding x perlu letak ini
 
@@ -146,7 +147,7 @@ class TrainingController extends Controller
 
         //Method 2 - Mass Assignment
         //$training->update($request->all());//update semua automatik
-        $training->update($request->only('title','description','trainer'));//update tertentu shaja
+        $training->update($request->only('title','description','trainer'));//update tertentu shaja // dan kalau pakai cara ini nama field form kene sama dengan nama field db
         //return to trainings
         return redirect()
             ->route('training:list')

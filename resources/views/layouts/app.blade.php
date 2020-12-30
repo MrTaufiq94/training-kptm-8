@@ -81,6 +81,10 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <hr>
+                                    <a  class="dropdown-item" href="">Last-Ip: {{ auth()->user()->previousLoginIp() ?? 'Not Found' }}</a>
+                                    <a  class="dropdown-item" href="">Last-Visit: {{ auth()->user()->previousLoginAt() ?? 'Not Found'}}</a>
+                      
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
