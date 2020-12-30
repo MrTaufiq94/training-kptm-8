@@ -1,7 +1,12 @@
-@extends('layouts.app')
+@extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
+    <h1 class="mt-4">Creat Training</h1>
+    <ol class="breadcrumd mb-4">
+        <li class="breadcrumb-item active">Dashboard Trainings</li>
+        <li class="breadcrumb-item active">Create</li>
+    </ol>
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if ($errors->any())

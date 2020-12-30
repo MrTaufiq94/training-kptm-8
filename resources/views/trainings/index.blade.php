@@ -1,7 +1,11 @@
-@extends('layouts.app')
+@extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
+    <h1 class="mt-4">Index</h1>
+    <ol class="breadcrumd mb-4">
+        <li class="breadcrumb-item active">Dashboard Trainings</li>
+    </ol>
     <div class="row justify-content-center">
         <div class="col-md-12">
 
